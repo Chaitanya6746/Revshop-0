@@ -1,0 +1,73 @@
+package servlets;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.User;
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import dao.DatabaseConnection;
+
+/**
+ * Servlet implementation class Login
+ */
+
+//@WebServlet("/register")
+public class Login extends HttpServlet {
+//	private static final long serialVersionUID = 1L;
+//	private static final String URL = "jdbc:mysql://localhost:3306/revshop_database";
+//    private static final String USER = "root";
+//    private static final String PASSWORD = "chaitu@02";
+//
+//    public static Connection getConnection() throws SQLException {
+//        return DriverManager.getConnection(URL, USER, PASSWORD);
+//    }
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Login() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String name = request.getParameter("email");
+		String pass = request.getParameter("pass");
+//		String query = "SELECT * FROM users where name= ?";
+//		try(Connection conn = getConnection();
+//				PreparedStatement st = conn.prepareStatement(query)){
+//			st.setString(1, name);
+//			ResultSet rs = st.executeQuery();
+//			if(rs.next()) {
+//				if(rs.getString("name")==name) {
+//					System.out.print(name);
+//				}
+//			}
+//			
+//		}catch(SQLException e) {
+//			
+//		}
+		System.out.println("Email: "+name+" "+"Password: "+pass);
+	}
+
+}

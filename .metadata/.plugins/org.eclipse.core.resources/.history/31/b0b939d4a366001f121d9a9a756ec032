@@ -1,0 +1,23 @@
+package service;
+
+import dao.BuyerDAO;
+import exception.UserNotFoundException;
+import model.Buyer;
+
+public class BuyerService {
+    private BuyerDAO buyerDAO = new BuyerDAO();
+
+    public void createAdmin(Buyer buyer) {
+        buyerDAO.addbuyer(buyer);
+    }
+
+    public Buyer loginBuyer(String username, String password) throws UserNotFoundException {
+        Buyer buyer = BuyerDAO.getBuyerByUsername(username);
+        if (buyer == null || !buyer.getPassword().equals(password)) {
+            throw new UserNotFoundException("Invalid username or password.");
+        }
+        return buyer;
+    }
+
+    // Other CRUD methods can be added here
+}

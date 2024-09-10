@@ -1,0 +1,19 @@
+<configuration>
+<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+<encoder>
+<pattern> %d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+</encoder>
+</appender>
+<appender name="file" class ="ch.qos.logback.core.FileAppender">
+<file>C:/Users/Chaitnya/eclipse-workspace/project-1/src/main/resources/logs/logfile.txt</file>
+<append>true</append>
+<immediateFlush>true></immediateFlush>
+<encoder>
+<pattern> %d{HH:mm:ss.SSS} %-5level %logger{36} - %msg%n</pattern>
+</encoder>
+</appender>
+<root level="info">
+<appender-ref ref="console"/>
+<appender-ref ref="file"/>
+</root>
+</configuration>

@@ -1,0 +1,13 @@
+package service;
+
+import dao.CartDAO;
+
+public class CartService {
+	CartDAO cartDAO = new CartDAO();
+
+	public void addToCart(int product_id) {
+		// TODO Auto-generated method stub
+		cartDAO.addtoCart(product_id);
+	}
+
+}

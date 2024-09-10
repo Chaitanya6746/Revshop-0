@@ -1,0 +1,22 @@
+package service;
+
+import dao.SellerDAO;
+import exception.UserNotFoundException;
+import model.Seller;
+
+public class SellerService {
+	private SellerDAO sellerDAO = new SellerDAO();
+
+    public void createSeller(Seller seller) {
+        sellerDAO.addSeller(seller);
+    }
+    
+    public Seller loginAdmin(String username, String password) throws UserNotFoundException {
+        Seller seller = SellerDAO.getSellerByUsername(username);
+        if (seller == null || !seller.getPassword().equals(password)) {
+            throw new UserNotFoundException("Invalid username or password.");
+        }
+        return seller;
+    }
+
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="Assignment.BankingSystemInitializer"/>
+    <fullyQualifiedTypeName name="Assignment.Employee"/>
+    <fullyQualifiedTypeName name="Assignment.Manager"/>
+    <fullyQualifiedTypeName name="javax.net.ssl.ManagerFactoryParameters"/>
+    <fullyQualifiedTypeName name="Assignment.RawAgent"/>
+    <fullyQualifiedTypeName name="com.sun.org.slf4j.internal.LoggerFactory"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Assertions"/>
+    <fullyQualifiedTypeName name="com.example.mock.EmailService"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="java.sql.CallableStatement"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="service.UserService"/>
+    <fullyQualifiedTypeName name="util.PasswordUtil"/>
+    <fullyQualifiedTypeName name="sun.security.util.Password"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="dao.UserDAO"/>
+    <fullyQualifiedTypeName name="exception.UserNotFoundException"/>
+    <fullyQualifiedTypeName name="model.Seller"/>
+    <fullyQualifiedTypeName name="exception.InvalidInputException"/>
+    <fullyQualifiedTypeName name="javax.management.InvalidAttributeValueException"/>
+    <fullyQualifiedTypeName name="dao.DatabaseConnection"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="model.Product"/>
+    <fullyQualifiedTypeName name="dao.CategoryDAO"/>
+    <fullyQualifiedTypeName name="service.CategoryService"/>
+    <fullyQualifiedTypeName name="service.CartService"/>
+    <fullyQualifiedTypeName name="model.Cart"/>
+    <fullyQualifiedTypeName name="util.InputUtil"/>
+    <fullyQualifiedTypeName name="service.ProductService"/>
+    <fullyQualifiedTypeName name="dao.OrderItemsDAO"/>
+</qualifiedTypeNameHistroy>

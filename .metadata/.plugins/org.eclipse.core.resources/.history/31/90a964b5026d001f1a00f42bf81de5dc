@@ -1,0 +1,23 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class CartDAO {
+
+	public void addtoCart(int user_id,int product_id,CartService cartService) {
+		// TODO Auto-generated method stub
+		String query = "INSERT into cart(user_id,product_id,quantity) VALUES(?,?,?)";
+		try(Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement st = conn.prepareStatement(query)){
+			st.setInt(1, user_id);
+			st.setInt(2, product_id);
+			st.setInt(3, cart.));
+			st.executeUpdate();
+		}catch (SQLException e) {
+            e.printStackTrace();
+        }
+	}
+
+}

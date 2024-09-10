@@ -1,0 +1,30 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Locale.Category;
+
+import model.User;
+
+public class CategoryDAO {
+	
+	public void displayCategories(Category category) {
+		String sql = "SELECT * FROM Categories";
+		try(Connection conn = DatabaseConnection.getConnection();
+			Statement st = conn.createStatement()){
+			ResultSet rs = st.executeQuery(sql);
+        // Process the result set
+        while (rs.next()) {
+            // Assuming the table has columns 'id', 'name', and 'email'
+        	
+//			category.s
+//			category.setcategoryname(rs.getString("name"));
+			
+//			return category;
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+	}
+}

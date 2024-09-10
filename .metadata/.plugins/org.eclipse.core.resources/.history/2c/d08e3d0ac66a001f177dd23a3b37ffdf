@@ -1,0 +1,248 @@
+package main;
+
+import exception.InvalidInputException;
+import exception.UserNotFoundException;
+import model.Category;
+import model.Product;
+import model.Seller;
+import model.User;
+import service.CategoryService;
+import service.ProductService;
+import service.SellerService;
+import service.UserService;
+import util.InputUtil;
+import util.PasswordUtil;
+
+public class Main {
+	public static void main(String[] args) {
+		UserService userService =  new UserService();
+		SellerService sellerService = new SellerService();
+		ProductService productService = new ProductService();
+		boolean execute = true;
+		
+		while(execute) {
+			System.out.println("1.User Registration\n2.Buyer Login\n3.Seller Login");
+			int option = InputUtil.getInt("Choose an option: ");
+			switch(option) {
+				case 1:
+					createUserRegistration(userService,sellerService);
+					break;
+				case 2:
+					handleUserLogin(userService);
+					break;
+				case 3:
+					handleSellerLogin(sellerService,userService,productService);
+					break;
+				case 4:
+					execute = false;
+					break;
+				default:
+					System.out.println("Enter valid option ra jaffa");
+			}
+		}
+	}
+
+	private static void handleSellerLogin(SellerService sellerService, UserService userService,ProductService productService) {
+		// TODO Auto-generated method stub
+		String username = InputUtil.getString("Enter username: ");
+		String password = InputUtil.getString("Enter password: ");
+		try {
+			User user = userService.loginSeller(username, PasswordUtil.hashPassword(password));
+			Seller seller = new Seller();
+			seller.setSellerId(user.getUserId());
+			if(sellerService.getDetails(seller.getSellerId())==null) {
+				System.out.println("Hello "+user.getUsername()+",\nPlease provide seller Details: ");
+				String business_name = InputUtil.getString("Enter business name: ");
+				String bus_adress = InputUtil.getString("Enter business address: ");
+				seller.setBusinessName(business_name);
+				seller.setBusinessAdress(bus_adress);
+				sellerService.createSeller(seller);
+				boolean LogedIn = true;
+				
+				while(LogedIn) {
+					System.out.println("1.Add Products\n2.Manage Inventory\n3.View Orders\n4.Logout");
+					int option = InputUtil.getInt("Choose an option: ");
+					switch(option) {
+						case 1:
+							addProductstoInventory(sellerService,productService);
+							break;
+						case 2:
+							manageInvenotry(sellerService);
+							break;
+						case 3:
+							seePlacedOrders(sellerService,userService);
+							break;
+						case 4:
+							LogedIn = false;
+							System.out.println("Logged out Succesfully");
+							break;
+						default:
+							System.out.println("Enter valid option ra jaffa");
+					}
+				}
+			}
+			else {
+				seller =  sellerService.getDetails(seller.getSellerId());
+				System.out.println("Business_name: "+seller.getBusiness_name()+" Business_address: "
+						+seller.getBus_adress());
+				boolean LogedIn = true;
+				
+				while(LogedIn) {
+					System.out.println("1.Add Products\n2.Manage Inventory\n3.View Orders\n4.Logout");
+					int option = InputUtil.getInt("Choose an option: ");
+					switch(option) {
+						case 1:
+							addProductstoInventory(sellerService,productService);
+							break;
+						case 2:
+							manageInvenotry(sellerService);
+							break;
+						case 3:
+							seePlacedOrders(sellerService,userService);
+							break;
+						case 4:
+							LogedIn = false;
+							System.out.println("Logged out Succesfully");
+							break;
+						default:
+							System.out.println("Enter valid option ra jaffa");
+					}
+				}
+			}
+			
+				
+			
+		}catch(UserNotFoundException | InvalidInputException e) {
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
+	private static void seePlacedOrders(SellerService sellerService, UserService userService) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void manageInvenotry(SellerService sellerService) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void addProductstoInventory(SellerService sellerService,ProductService productService,CategoryService categoryService) {
+		// TODO Auto-generated method stub
+		String prod_name = InputUtil.getString("Enter product Name: ");
+		String desc = InputUtil.getString("Enter description: ");
+		String img_url = InputUtil.getString("Enter Image URL: ");
+		double price = InputUtil.getDouble("Enter Price: ");
+		double dis_price = InputUtil.getDouble("Enter Discount Price: ");
+		int quantity = InputUtil.getInt("Enter Quantity available: ");
+		int  thes_quant = InputUtil.getInt("Enter Threshold Quantity: ");
+		Category category = new Category();
+		int category_id = 0;
+		categoryService.showCategories();
+		Seller seller = new Seller();
+		int seller_id = seller.getSellerId();
+		Product product = new Product();
+		product.setName(prod_name);		
+		product.setDescription(desc);
+		product.setImg_url(img_url);
+		product.setPrice(price);
+		product.setDis_price(dis_price);
+		product.setQuantity(quantity);
+		product.setThres_quanty(thes_quant);
+		
+		try {
+			productService.addProduct(seller_id,category_id,product);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	private static void handleUserLogin(UserService userService) {
+		// TODO Auto-generated method stub
+		String username = InputUtil.getString("Enter username: ");
+		String password = InputUtil.getString("Enter password: ");
+		try {
+			User user = userService.loginUser(username, PasswordUtil.hashPassword(password));
+			System.out.println("Welcome "+ user.getUsername()+" Our Buyer");
+			boolean LogedIn = true;
+			
+			while(LogedIn) {
+				System.out.println("1.View product details\n2.Add or Remove Product\n3.Browse Products\n4.Logout");
+				int option = InputUtil.getInt("Choose an option: ");
+				switch(option) {
+					case 1:
+						viewProductsDetails(userService);
+						break;
+					case 2:
+						addorRemoveProducts(userService);
+						break;
+					case 3:
+						browseProducts(userService);
+						break;
+					case 4:
+						LogedIn = false;
+						System.out.println("Logged out Succesfully");
+						break;
+					default:
+						System.out.println("Enter valid option ra jaffa");
+				}
+			}
+		}catch(UserNotFoundException e) {
+			System.out.println(e.getMessage());
+		}	
+	}
+
+	private static void browseProducts(UserService userService) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void addorRemoveProducts(UserService userService) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	private static void viewProductsDetails(UserService userService) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void createUserRegistration(UserService userService, SellerService sellerService) {
+		// TODO Auto-generated method stub
+		String username = InputUtil.getString("Enter username: ");
+		String password = InputUtil.getString("Enter password: ");
+		String email = InputUtil.getString("Enter email: ");
+		int role = InputUtil.getInt("1.Buyer\n2.Seller ");
+		String Role = "";
+		switch(role) {
+			case 1:
+				Role = "buyer";
+				break;
+			case 2:
+				Role = "seller";
+				break;
+			default:
+				System.out.println("Only buyer and sellers");
+		}
+		String address = InputUtil.getString("Enter Address: ");
+		long phone_num = InputUtil.getLong("Enter Phone number: ");
+		User user = new User();
+		user.setUsername(username);
+		user.setPassword(PasswordUtil.hashPassword(password));
+		user.setEmail(email);
+		user.setRole(Role);
+		user.setaddress(address);
+		user.setphonenumber(phone_num);
+		try {
+			userService.createUser(user);
+		} catch (InvalidInputException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

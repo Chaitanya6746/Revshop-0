@@ -1,0 +1,46 @@
+package service;
+
+import dao.ProductDAO;
+import exception.InvalidInputException;
+import model.Product;
+import model.Seller;
+
+public class ProductService {
+	private ProductDAO productDAO = new ProductDAO();
+
+	public Product addProduct(int id,int category_id, Product product) throws InvalidInputException {
+		// TODO Auto-generated method stub
+		if (product.getName().isEmpty() || product.getDescription().isEmpty()|| product.getImg_url().isEmpty()) {
+            throw new InvalidInputException("All fields are required.");
+        }
+		productDAO.addProductTOInventory(id,category_id,product);
+		return product;
+	}
+	public void showAllProducts() {
+		// TODO Auto-generated method stub
+		productDAO.getAllproducts();
+		
+	}
+	
+
+	public void getProductDetails(int cat_id) {
+		// TODO Auto-generated method stub
+		productDAO.getAllproductsBycategory(cat_id);
+		
+	}
+
+	public void getProductDetailsbyId(int product_id) {
+		// TODO Auto-generated method stub
+		productDAO.getproductdetailsbyId(product_id);
+	}
+	
+	public void updateInventory(int product_id, String update, double price) {
+		// TODO Auto-generated method stub
+		productDAO.updateProduct(product_id,update,price);
+	}
+	public void updateInventorybyquant(int product_id, String update, int quantity) {
+		// TODO Auto-generated method stub
+		productDAO.updateByquant(product_id,update,quantity);
+	}
+
+}

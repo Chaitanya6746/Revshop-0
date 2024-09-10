@@ -1,0 +1,13 @@
+package service;
+
+import dao.CategoryDAO;
+import model.Category;
+
+public class CategoryService {
+	private CategoryDAO categoryDAO = new CategoryDAO();
+	public void showCategories() {
+		categoryDAO.displayCategories();
+		// TODO Auto-generated method stub
+	}
+	
+}

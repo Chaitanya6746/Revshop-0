@@ -1,0 +1,28 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import model.Product;
+import model.Seller;
+
+public class ProductDAO {
+
+	public void addProductTOInventory(int id,Product product) {
+		// TODO Auto-generated method stub
+		String query = "INSERT into products(seller_id,category_id,name,description,image_url,price,discount_price,quantity_available,threshold_quantity) VALUES(?,?,?,?,?,?,?,?,?)";
+		try(Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement st = conn.prepareStatement(query)){
+			
+			st.setInt(1, seller.getSellerId());
+            st.setString(2, seller.getBusiness_name());
+            st.setString(3, seller.getBus_adress());
+            st.executeUpdate();
+			
+		}catch (SQLException e) {
+            e.printStackTrace();
+        }
+	}
+
+}

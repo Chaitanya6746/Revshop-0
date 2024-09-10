@@ -1,0 +1,54 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import model.Product;
+import model.Seller;
+import model.User;
+
+public class ProductDAO {
+
+	public void addProductTOInventory(int id,Product product) {
+		// TODO Auto-generated method stub
+		String query1 = "INSERT into Categories(category_name) VALUES(?)";
+		try(Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement st = conn.prepareStatement(query1)){
+			
+			st.setString(1, product.getCategory());
+            st.executeUpdate();
+//            int category_id = 
+			
+		}catch (SQLException e) {
+            e.printStackTrace();
+        }
+		String query = "INSERT into products(seller_id,category_id,name,description,image_url,price,discount_price,quantity_available,threshold_quantity) VALUES(?,?,?,?,?,?,?,?,?)";
+		try(Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement st = conn.prepareStatement(query)){
+			st.setInt(1, id);
+//			st.setInt(2, );
+			
+		}catch (SQLException e) {
+            e.printStackTrace();
+        }
+	}
+//	public static User getCat_idByName(String cat_name) {
+//		// TODO Auto-generated method stub
+//		String query = "SELECT category_id FROM Categories where category_name= ?";
+//		try(Connection conn = DatabaseConnection.getConnection();
+//				PreparedStatement st = conn.prepareStatement(query)){
+//			st.setString(1, cat_name);
+//			ResultSet rs = st.executeQuery();
+//			if(rs.next()) {
+//				
+//				return user;
+//			}
+//			
+//		}catch(SQLException e) {
+//			
+//		}
+//		return null;
+	}
+}
