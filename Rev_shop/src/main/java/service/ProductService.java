@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import dao.ProductDAO;
 import exception.InvalidInputException;
 import model.Product;
@@ -16,20 +18,28 @@ public class ProductService {
 		productDAO.addProductTOInventory(id,category_id,product);
 		return product;
 	}
-	public void showAllProducts() {
+	public List<Product> showAllProducts() {
 		// TODO Auto-generated method stub
-		productDAO.getAllproducts();
+		return productDAO.getAllproducts();
 		
 	}
-	public void getProductDetails(int cat_id) {
+	public List<Product> getProductDetails(int cat_id) {
 		// TODO Auto-generated method stub
-		productDAO.getAllproductsBycategory(cat_id);
+		return productDAO.getAllproductsBycategory(cat_id);
 		
 	}
 
-	public void getProductDetailsbyId(int product_id) {
+	public Product getProductDetailsbyId(int product_id) {
 		// TODO Auto-generated method stub
-		productDAO.getproductdetailsbyId(product_id);
+		return productDAO.getproductdetailsbyId(product_id);
+	}
+	
+	public List<Product> getproductBySellerId(int seller_id){
+		return productDAO.getProductsByseller(seller_id);
+		
+	}
+	public void updateInventoryById(int product_id,Product product) {
+		productDAO.updateProductbyId(product_id,product);
 	}
 	
 	public void updateInventorybyprice(int product_id,double price) {

@@ -1,7 +1,10 @@
 package service;
 
+import java.util.List;
+
 import dao.CartDAO;
 import model.Cart;
+import model.Product;
 
 public class CartService {
 	private CartDAO cartDAO = new CartDAO();
@@ -12,15 +15,18 @@ public class CartService {
 		cartDAO.addtoCart(user_id,product_id,cart);
 	}
 
-	public void removeFromCart(int user_id) {
+	public void removeFromCart(int user_id,int product_id) {
 		// TODO Auto-generated method stub
-		cartDAO.removeproduct(user_id);
+		cartDAO.removeproduct(user_id,product_id);
 		
 	}
+	public int getQuantfromCart(int product_id) {
+		return cartDAO.getquant(product_id);
+	}
 
-	public void showCartItems(int user_id) {
+	public List<Product> showCartItems(int user_id) {
 		// TODO Auto-generated method stub
-		cartDAO.showItems(user_id);
+		return cartDAO.showItems(user_id);
 		
 	}
 

@@ -9,6 +9,8 @@ public class Product {
 	private int quantity;
 	private int thres_quanty;
 	private int product_id;
+	private int category_id;
+	private int seller_id;
 	
 	public String getName() {
 		return name;
@@ -57,6 +59,18 @@ public class Product {
 	}
 	public void setProduct_id(int product_id) {
 		this.product_id = product_id;
+	}
+	public int getCategory_id() {
+		return category_id;
+	}
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
+	}
+	public int getSeller_id() {
+		return seller_id;
+	}
+	public void setSeller_id(int seller_id) {
+		this.seller_id = seller_id;
 	}
 
 	

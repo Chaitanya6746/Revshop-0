@@ -1,5 +1,7 @@
 package main;
 
+import java.sql.SQLException;
+
 import exception.InvalidInputException;
 import exception.UserNotFoundException;
 import model.Cart;
@@ -18,7 +20,7 @@ import util.InputUtil;
 import util.PasswordUtil;
 
 public class Main {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		UserService userService =  new UserService();
 		SellerService sellerService = new SellerService();
 		ProductService productService = new ProductService();
@@ -285,7 +287,7 @@ public class Main {
 			placeOrder(user_id,cartService,orderService);
 			break;
 		case 2:
-			manageProductCart(user_id,cartService);
+//			manageProductCart(user_id,cartService);
 			break;
 		default:
 			System.out.println("Enter valid option ra jaffa");
@@ -344,7 +346,7 @@ public class Main {
 		
 	}
 
-	private static void createUserRegistration(UserService userService, SellerService sellerService) {
+	private static void createUserRegistration(UserService userService, SellerService sellerService) throws SQLException {
 		// TODO Auto-generated method stub
 		String username = InputUtil.getString("Enter username: ");
 		String password = InputUtil.getString("Enter password: ");

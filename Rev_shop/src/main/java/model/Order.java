@@ -1,15 +1,21 @@
 package model;
 
+import java.sql.Timestamp;
+
 public class Order {
-	private int total_amount;
+	private double total_amount;
 	private String shipping_address;
 	private String billing_address;
 	private String order_status;
-	public int getTotal_amount() {
+	private int user_id;
+	private int order_id;
+	private Timestamp order_date;
+	
+	public double getTotal_amount() {
 		return total_amount;
 	}
-	public void setTotal_amount(int total_amount) {
-		this.total_amount = total_amount;
+	public void setTotal_amount(double d) {
+		this.total_amount = d;
 	}
 	public String getShipping_address() {
 		return shipping_address;
@@ -28,5 +34,23 @@ public class Order {
 	}
 	public void setOrder_status(String order_status) {
 		this.order_status = order_status;
+	}
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+	public int getOrder_id() {
+		return order_id;
+	}
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
+	public Timestamp getOrder_date() {
+		return order_date;
+	}
+	public void setOrder_date(Timestamp order_date) {
+		this.order_date = order_date;
 	}
 }

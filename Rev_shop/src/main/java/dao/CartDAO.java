@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.Cart;
+import model.Product;
 //import model.Product;
 import util.InputUtil;
 
@@ -27,7 +30,7 @@ public class CartDAO {
         }
 	}
 
-	public void removeproduct(int user_id) {
+	public void removeproduct(int user_id,int product_id) {
 		// TODO Auto-generated method stub
 		String query = "SELECT * from Cart where user_id = ?";
 		try(Connection conn = DatabaseConnection.getConnection();
@@ -42,11 +45,11 @@ public class CartDAO {
 		}catch (SQLException e) {
             e.printStackTrace();
         }
-		int item = InputUtil.getInt("Enter number to remove: ");
+//		int item = InputUtil.getInt("Enter number to remove: ");
 		String sql = "DELETE from Cart where product_id = ? AND user_id = ? ";
 		try(Connection conn = DatabaseConnection.getConnection();
 				PreparedStatement st = conn.prepareStatement(sql)){
-			st.setInt(1, item);
+			st.setInt(1, product_id);
 			st.setInt(2, user_id);
 			st.executeUpdate();
 				
@@ -56,8 +59,10 @@ public class CartDAO {
 		
 	}
 
-	public void showItems(int user_id) {
+
+	public List<Product> showItems(int user_id) {
 		// TODO Auto-generated method stub
+		List<Product> cartitems = new ArrayList<>();
 		String query = "SELECT * from Cart where user_id = ?";
 		try(Connection conn = DatabaseConnection.getConnection();
 				PreparedStatement st = conn.prepareStatement(query)){
@@ -65,12 +70,35 @@ public class CartDAO {
 			ResultSet rs = st.executeQuery();
 	        // Process the result set
 				while (rs.next()) {
-					productDAO.getproductdetailsbyId(rs.getInt("product_id"));
+					Product product = productDAO.getproductdetailsbyId(rs.getInt("product_id"));
+					cartitems.add(product);
 	        }
 				
 		}catch (SQLException e) {
             e.printStackTrace();
         }
+		return cartitems;
+	}
+
+	public int getquant(int product_id) {
+		// TODO Auto-generated method stub
+		
+		String query = "SELECT quantity from Cart where product_id = ?";
+		try(Connection conn = DatabaseConnection.getConnection();
+				PreparedStatement st = conn.prepareStatement(query)){
+			st.setInt(1, product_id);
+			ResultSet rs = st.executeQuery();
+	        // Process the result set
+				while (rs.next()) {
+					Cart cart = new Cart();
+					cart.setQuantity(rs.getInt("quantity"));
+					return cart.getQuantity();
+	        }
+				
+		}catch (SQLException e) {
+            e.printStackTrace();
+        }
+		return 0;
 	}
 		
 }

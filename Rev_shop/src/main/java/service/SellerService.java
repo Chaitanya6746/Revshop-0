@@ -15,11 +15,8 @@ public class SellerService {
         sellerDAO.addSeller(seller);
     }
     public Seller getDetails(int id) throws InvalidInputException {
-    	if(sellerDAO.checkSeller(id)) {
-    		Seller seller = sellerDAO.getBusinessDetailsById(id);
-    		return seller;
-    	}
-    	return null;
+    	Seller seller = sellerDAO.getBusinessDetailsById(id);
+    	return seller;
     }
 }
 
