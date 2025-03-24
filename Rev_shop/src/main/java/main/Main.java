@@ -217,7 +217,7 @@ public class Main {
 		double dis_price = InputUtil.getDouble("Enter Discount Price: ");
 		int quantity = InputUtil.getInt("Enter Quantity available: ");
 		int  thes_quant = InputUtil.getInt("Enter Threshold Quantity: ");
-		int category_id = categoryService.showCategories();
+//		int category_id = categoryService.showCategories();
 //		Seller seller = seller.setSellerId(user.getUserId()); 
 		Product product = new Product();
 		product.setName(prod_name);		
@@ -228,13 +228,13 @@ public class Main {
 		product.setQuantity(quantity);
 		product.setThres_quanty(thes_quant);
 //		
-		try {
-			productService.addProduct(seller_id,category_id,product);
-			System.out.println("Product added succesfully");
-		} catch (InvalidInputException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+////			productService.addProduct(seller_id,category_id,product);
+//			System.out.println("Product added succesfully");
+//		} catch (InvalidInputException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		
 		
 	}
@@ -305,8 +305,8 @@ public class Main {
 
 	private static void browseProducts(int user_id,ProductService productService,CategoryService categoryService,CartService cartService) {
 		// TODO Auto-generated method stub
-		int cat_id = categoryService.showCategories();
-		productService.getProductDetails(cat_id);
+//		int cat_id = categoryService.showCategories();
+//		productService.getProductDetails(cat_id);
 		int product_id = InputUtil.getInt("Choose to get product details: ");
 		productService.getProductDetailsbyId(product_id);
 		
@@ -327,7 +327,7 @@ public class Main {
 				System.out.println("Product Added to Cart");
 				break;
 			case 2:
-				cartService.removeFromCart(user_id);
+//				cartService.removeFromCart(user_id);
 				System.out.println("Product Removed to Cart");
 				break;
 			case 3:

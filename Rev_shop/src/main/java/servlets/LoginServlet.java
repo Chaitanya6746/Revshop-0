@@ -54,6 +54,7 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		System.out.println(email+" "+password);
 		
 //		String Role = (String) request.getAttribute("Role");
 	        
